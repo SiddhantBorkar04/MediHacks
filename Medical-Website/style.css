@@ -115,7 +115,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+  /*
   #heatmap {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -134,7 +134,7 @@ body {
   .heatmap-cell.active {
     background-color: #2ecc71;
   }
-  
+  */
   /* Certifications Section */
   .certifications-section {
     margin-top: 20px;
@@ -161,5 +161,79 @@ body {
   .certifications img:hover {
     transform: scale(1.05);
     transition: 0.3s ease;
+  }
+  
+  .heatmap-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stats {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .stats .total-submissions {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .stats .details span {
+    margin-right: 20px;
+    font-size: 14px;
+  }
+  
+  .heatmap {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* One column per month */
+    gap: 10px;
+  }
+  
+  .month {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .month-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .day-box {
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    border-radius: 2px;
+    background-color: #bdc3c7; /* Default: no activity */
+    cursor: pointer;
+  }
+  
+  .day-box.active-low {
+    background-color: #76c7c0;
+  }
+  
+  .day-box.active-medium {
+    background-color: #34a69a;
+  }
+  
+  .day-box.active-high {
+    background-color: #1d7069;
+  }
+  
+  .day-box.active-max {
+    background-color: #0d473f;
+  }
+  
+  .day-box:hover {
+    border: 1px solid #fff;
+    transform: scale(1.2);
+    transition: transform 0.2s;
   }
   

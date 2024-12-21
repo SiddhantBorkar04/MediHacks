@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   <div class="container">
@@ -12,10 +13,10 @@
     <div class="navbar" id="navbar">
       <button class="toggle-btn" id="toggle-btn">▶</button>
       <ul class="menu">
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#graph">Progress Graph</a></li>
-        <li><a href="#courses">My Courses</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="index.html">Profile</a></li>
+        <li><a href="graph.html">Progress Graph</a></li>
+        <li><a href="courses.html">My Courses</a></li>
+        <li><a href="about.html">About</a></li>
       </ul>
     </div>
 
@@ -32,10 +33,20 @@
         </div>
 
         <div class="activity-section">
-          <h3>Activity Heatmap</h3>
-          <div id="heatmap"></div>
+            <div class="heatmap-container">
+                <div class="stats">
+                <div class="total-submissions">166 submissions in the past one year</div>
+                <div class="details">
+                    <span>Total active days: <strong id="active-days">0</strong></span>
+                    <span>Max streak: <strong id="max-streak">0</strong></span>
+                </div>
+                </div>
+                <div class="heatmap" id="heatmap">
+                <!-- Heatmap boxes will be dynamically generated -->
+                </div>
+            </div>
         </div>
-
+          
         <div class="certifications-section">
           <h3>Certifications</h3>
           <div class="certifications" id="certifications">
