@@ -157,3 +157,25 @@ document.addEventListener("DOMContentLoaded", () => {
     maxStreakEl.textContent = maxStreak;
   });
   
+  window.onload = function () {
+    console.log("Courses page script loaded.");
+  
+    // Handle Focus Area Clicks
+    const focusAreas = document.querySelectorAll(".focus-area");
+    focusAreas.forEach((area) => {
+      area.addEventListener("click", () => {
+        alert(`Resource linked to this focus area.`);
+        // Add logic for loading resource or updating state here
+      });
+    });
+  
+    // Handle Certification Clicks
+    const certifications = document.querySelectorAll(".certification-icon");
+    certifications.forEach((cert) => {
+      cert.addEventListener("click", () => {
+        alert(`Certification details or maintenance process.`);
+        // Add logic for certification handling here
+      });
+    });
+  };
+  
