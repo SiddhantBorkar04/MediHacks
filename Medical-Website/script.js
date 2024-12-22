@@ -70,18 +70,21 @@ document.getElementById("toggle-btn").addEventListener("click", () => {
 
 // Wait for the DOM to fully load
 document.addEventListener("DOMContentLoaded", () => {
-    // Get the navbar and toggle button
-    const navbar = document.getElementById("navbar");
-    const toggleBtn = document.getElementById("toggle-btn");
-
-    // Check if the toggle button exists (to avoid errors on pages without it)
-    if (toggleBtn) {
-        // Add click event listener to the toggle button
-        toggleBtn.addEventListener("click", () => {
-        navbar.classList.toggle("collapsed"); // Toggle the "collapsed" class
-        });
-    }
-});
+    const navbar = document.querySelector(".navbar");
+    const toggleBtn = document.querySelector(".toggle-btn");
+  
+    toggleBtn.addEventListener("click", () => {
+      navbar.classList.toggle("collapsed");
+  
+      // Toggle the button rotation and navbar width
+      if (navbar.classList.contains("collapsed")) {
+        toggleBtn.setAttribute("aria-label", "Expand Navigation");
+      } else {
+        toggleBtn.setAttribute("aria-label", "Collapse Navigation");
+      }
+    });
+  });
+  
 
   document.addEventListener("DOMContentLoaded", () => {
     const activityData = {
