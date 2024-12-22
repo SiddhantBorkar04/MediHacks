@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Graph</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Graph</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class="container">
     <!-- Navigation Bar -->
-    <div class="navbar" id="navbar">
-      <button class="toggle-btn" id="toggle-btn">▶</button>
-      <ul class="menu">
-        <li><a href="index.html">Profile</a></li>
-        <li><a href="graph.html">Progress Graph</a></li>
-        <li><a href="courses.html">My Courses</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
+    <div class="navbar">
+        <ul class="menu">
+            <li><a href="index.html">Profile</a></li>
+            <li><a href="graph.html">Progress Graph</a></li>
+            <li><a href="courses.html">My Courses</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-      <h1>Progress Graph</h1>
-      <p>This page will show the user's progress graph.</p>
-    </div>
-  </div>
+        <h1>Cardiology Progress Graph</h1>
+        <div class="graph-wrapper">
+            <div class="graph-container">
+                <svg id="svg-lines"></svg>
 
-  <script src="script.js"></script>
+                <!-- Circular Nodes with Dynamic Progress -->
+                <div class="node" id="node1" data-progress="80" style="top: 5%; left: 40%;">Diseases</div>
+                <div class="node" id="node2" data-progress="60" style="top: 20%; left: 25%;">Diagnosis</div>
+                <div class="node" id="node3" data-progress="30" style="top: 20%; left: 55%;">Surgery</div>
+                <div class="node" id="node4" data-progress="50" style="top: 35%; left: 15%;">Pharma</div>
+                <div class="node" id="node5" data-progress="20" style="top: 35%; left: 40%;">Risk Mgmt</div>
+                <div class="node" id="node6" data-progress="90" style="top: 35%; left: 65%;">Trends</div>
+                <div class="node" id="node7" data-progress="85" style="top: 50%; left: 30%;">Care</div>
+                <div class="node" id="node13" data-progress="60" style="top: 50%; left: 55%;">Sub9</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
