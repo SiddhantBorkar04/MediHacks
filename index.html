@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation Bar -->
+    <div class="navbar" id="navbar">
+      <button class="toggle-btn" id="toggle-btn">▶</button>
+      <ul class="menu">
+        <li><a href="index.html">Profile</a></li>
+        <li><a href="graph.html">Progress Graph</a></li>
+        <li><a href="courses.html">My Courses</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="profile-container">
+        <div class="profile-header">
+          <div class="profile-picture" id="profile-picture">
+            <!-- User's profile picture -->
+            <img src="1726794153683 (1).jpeg"  />
+          </div>
+          <div class="profile-info" id="profile-info">
+            <!-- User's information -->
+          </div>
+        </div>
+
+        <div class="activity-section">
+            <div class="heatmap-container">
+                <div class="stats">
+                <div class="total-submissions">166 submissions in the past one year</div>
+                <div class="details">
+                    <span>Total active days: <strong id="active-days">0</strong></span>
+                    <span>Max streak: <strong id="max-streak">0</strong></span>
+                </div>
+                </div>
+                <div class="heatmap" id="heatmap">
+                <!-- Heatmap boxes will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+          
+        <div class="certifications-section">
+          <h3>Certifications</h3>
+          <div class="certifications" id="certifications">
+            <!-- Certification badges -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

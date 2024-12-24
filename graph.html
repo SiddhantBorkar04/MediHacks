@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Graph</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <div class="navbar" id="navbar">
+            <button class="toggle-btn" id="toggle-btn">▶</button>
+            <ul class="menu">
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="graph.html">Progress Graph</a></li>
+                <li><a href="courses.html">My Courses</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Cardiology Progress Graph</h1>
+            <div class="graph-wrapper">
+                <div class="graph-container">
+                    <svg id="svg-lines"></svg>
+
+                    <!-- Circular Nodes with Dynamic Progress -->
+                    <div class="node" id="node1" data-progress="80" style="top: 5%; left: 40%;">
+                        Cardiac
+                    </div>
+                    <div class="node" id="node2" data-progress="60" style="top: 20%; left: 25%;">
+                        At Birth
+                    </div>
+                    <div class="node" id="node3" data-progress="30" style="top: 20%; left: 55%;">
+                        Stroke
+                    </div>
+                    <div class="node" id="node4" data-progress="50" style="top: 35%; left: 15%;">
+                        Sepsis
+                    </div>
+                    <div class="node" id="node6" data-progress="90" style="top: 35%; left: 65%;">
+                        Accidents
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setupNodes() {
+            const nodes = document.querySelectorAll('.node');
+            const svgNS = "http://www.w3.org/2000/svg";
+
+            nodes.forEach((node) => {
+                const progress = parseInt(node.dataset.progress, 10);
+
+                // Create SVG elements for the progress circle
+                const svg = document.createElementNS(svgNS, "svg");
+                const backgroundCircle = document.createElementNS(svgNS, "circle");
+                const progressCircle = document.createElementNS(svgNS, "circle");
+
+                // Set up the background circle
+                backgroundCircle.setAttribute("class", "background-circle");
+                backgroundCircle.setAttribute("cx", "50");
+                backgroundCircle.setAttribute("cy", "50");
+                backgroundCircle.setAttribute("r", "45");
+
+                // Set up the progress circle
+                progressCircle.setAttribute("class", "progress-circle");
+                progressCircle.setAttribute("cx", "50");
+                progressCircle.setAttribute("cy", "50");
+                progressCircle.setAttribute("r", "45");
+                progressCircle.style.strokeDashoffset = `${315 - (315 * progress) / 100}`;
+
+                // Determine color based on progress
+                if (progress >= 70) {
+                    progressCircle.style.stroke = "#10b981"; // Green for good
+                } else if (progress >= 40) {
+                    progressCircle.style.stroke = "#fbbf24"; // Yellow for okay
+                } else {
+                    progressCircle.style.stroke = "#ef4444"; // Red for bad
+                }
+
+                // Append SVG elements to the node
+                svg.appendChild(backgroundCircle);
+                svg.appendChild(progressCircle);
+                node.appendChild(svg);
+            });
+        }
+
+        function connectNodes(parentId, childId) {
+            const parent = document.getElementById(parentId);
+            const child = document.getElementById(childId);
+            const svg = document.getElementById('svg-lines');
+
+            const parentRect = parent.getBoundingClientRect();
+            const childRect = child.getBoundingClientRect();
+            const containerRect = svg.parentElement.getBoundingClientRect();
+
+            const x1 = parentRect.left + parentRect.width / 2 - containerRect.left;
+            const y1 = parentRect.top + parentRect.height / 2 - containerRect.top;
+            const x2 = childRect.left + childRect.width / 2 - containerRect.left;
+            const y2 = childRect.top + childRect.height / 2 - containerRect.top;
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", `M${x1},${y1} L${x2},${y2}`);
+            svg.appendChild(path);
+        }
+
+        function toggleNavbar() {
+            const navbar = document.getElementById("navbar");
+            navbar.classList.toggle("collapsed");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById("toggle-btn");
+            toggleBtn.addEventListener("click", toggleNavbar);
+            setupNodes();
+            connectNodes('node1', 'node2');
+            connectNodes('node1', 'node3');
+            connectNodes('node2', 'node4');
+            connectNodes('node3', 'node6'); // Added connection between Surgery and Trends
+        });
+    </script>
+</body>
+
+</html>
