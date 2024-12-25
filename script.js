@@ -184,13 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
   document.addEventListener('DOMContentLoaded', () => {
-    const correctAnswers = [0, 2, 2]; // Correct indices for questions
+    const correctAnswers = [0, 1, 2, 0, 1, 0, 1, 1, 0, 3, 1, 0, 1, 0, 2];
     const submitBtn = document.getElementById('submit-btn');
     const resultDisplay = document.getElementById('result-display');
     const gradeSpan = document.getElementById('grade');
   
     submitBtn.addEventListener('click', () => {
       let correctCount = 0;
+  
       correctAnswers.forEach((correctIndex, i) => {
         const selected = document.querySelector(`input[name="question${i + 1}"]:checked`);
         if (selected && parseInt(selected.value, 10) === correctIndex) {
@@ -199,8 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   
       const grade = Math.round((correctCount / correctAnswers.length) * 100);
-      gradeSpan.textContent = grade;
-      resultDisplay.style.display = 'block';
+      gradeSpan.textContent = grade; // Set the grade text
+      resultDisplay.style.display = 'block'; // Show the result display
     });
   });
-  
+    
