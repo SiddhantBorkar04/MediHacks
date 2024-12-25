@@ -1,0 +1,232 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    display: flex;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    height: 100%;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    display: block;
+    padding: 10px 20px;
+}
+
+.menu li a:hover {
+    background-color: #34495e;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.graph-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #f7f9fc;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 2;
+}
+
+/* Node Styling */
+.node {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.node:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.node svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.node circle {
+    fill: none;
+    stroke-width: 6;
+}
+
+.background-circle {
+    stroke: #e0e0e0;
+}
+
+.progress-circle {
+    stroke-dasharray: 315; /* Total circumference of the circle (2 * π * r) */
+    stroke-dashoffset: 315;
+    transition: stroke-dashoffset 0.6s ease;
+}
+
+/* Connecting Lines */
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+path {
+    stroke: #888;
+    stroke-width: 4; /* Thicker lines for better visibility */
+    fill: none;
+    opacity: 1;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  /* Navigation Bar */
+  .navbar {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    width: 250px; /* Fixed width for expanded state */
+    transition: width 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: fixed; /* Fix the navbar's position to prevent resizing issues */
+    height: 100%; /* Ensure it covers the full height */
+  }
+  
+  .navbar.collapsed {
+    width: 50px; /* Fixed width for collapsed state */
+  }
+  
+  /* Menu Items */
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    display: block;
+    padding: 10px 20px;
+    white-space: nowrap;
+  }
+  
+  .menu li a:hover {
+    background-color: #34495e;
+  }
+  
+  
+  .navbar.collapsed .menu {
+    display: none; /* Hide menu when collapsed */
+  }
+  
+  /* Content Alignment */
+  .main-content {
+    margin-left: 250px; /* Match the width of the expanded navbar */
+    transition: margin-left 0.3s ease;
+  }
+  
+  
+  .navbar.collapsed + .main-content {
+    margin-left: 50px; /* Match the width of the collapsed navbar */
+  } 
+  
+  
+  /* Toggle Button Styling */
+  .toggle-btn {
+  background-color: #34495e; /* Dark grey background for the button */
+  color: #ecf0f1; /* Light text color */
+  font-size: 24px; /* Increase size for better visibility */
+  border: none;
+  border-radius: 4px; /* Rounded corners for aesthetics */
+  cursor: pointer;
+  margin: 10px auto; /* Center the button */
+  width: 40px; /* Larger width */
+  height: 40px; /* Larger height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth animations */
+  }
+  
+  .toggle-btn:hover {
+  background-color: #2ecc71; /* Green highlight on hover */
+  }
+  
+  .navbar.collapsed .toggle-btn {
+  transform: rotate(180deg); /* Rotate animation when navbar is collapsed */
+  }
+  

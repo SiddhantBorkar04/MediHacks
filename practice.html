@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head> 
+<style>
+  /* Practice Page Specific Styling */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    display: flex;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .question-container {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question-container p {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  button {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  button:hover {
+    background-color: #27ae60;
+  }
+  
+  #result-display {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  #result-display h2 {
+    margin: 0;
+    color: #34495e;
+  }
+  </style>
+  
+<body>
+  <div class="container">
+    <!-- Navigation Bar -->
+    <div class="main-content">
+      <h1>Practice Quiz</h1>
+      <form id="quiz-form">
+        <!-- Questions 1 to 15 -->
+        <div class="question-container">
+          <p>1. What primary benefit does virtual reality (VR) provide in chronic stroke rehabilitation?</p>
+          <label><input type="radio" name="question1" value="0"> Enhanced balance and walking capabilities</label>
+          <label><input type="radio" name="question1" value="1"> Elimination of need for physiotherapists</label>
+          <label><input type="radio" name="question1" value="2"> Superior cognitive recovery</label>
+          <label><input type="radio" name="question1" value="3"> Cost-effective hardware</label>
+        </div>
+        
+        <div class="question-container">
+          <p>2. What was the GRADE assessment for walking improvements using VR training?</p>
+          <label><input type="radio" name="question2" value="0"> High</label>
+          <label><input type="radio" name="question2" value="1"> Moderate</label>
+          <label><input type="radio" name="question2" value="2"> Low</label>
+          <label><input type="radio" name="question2" value="3"> Very Low</label>
+        </div>
+
+        <div class="question-container">
+          <p>3. What improvement in Fugl-Meyer Upper Extremity Motor Assessment (FMA-UE) scores was seen with RT?</p>
+          <label><input type="radio" name="question3" value="0"> WMD 3.27</label>
+          <label><input type="radio" name="question3" value="1"> WMD 4.07</label>
+          <label><input type="radio" name="question3" value="2"> WMD 5.27</label>
+          <label><input type="radio" name="question3" value="3"> WMD 6.27</label>
+        </div>
+
+        <div class="question-container">
+          <p>4. What is the primary goal of machine learning (ML) in prehospital stroke detection?</p>
+          <label><input type="radio" name="question4" value="0"> Early detection of large vessel occlusion (LVO)</label>
+          <label><input type="radio" name="question4" value="1"> Reducing stroke occurrence</label>
+          <label><input type="radio" name="question4" value="2"> Automating all stroke treatment</label>
+          <label><input type="radio" name="question4" value="3"> Predicting long-term recovery</label>
+        </div>
+
+        <div class="question-container">
+          <p>5. Which ML model achieved the highest pooled AUC in the study?</p>
+          <label><input type="radio" name="question5" value="0"> Random Forest</label>
+          <label><input type="radio" name="question5" value="1"> Support Vector Machine</label>
+          <label><input type="radio" name="question5" value="2"> Decision Tree</label>
+          <label><input type="radio" name="question5" value="3"> Logistic Regression</label>
+        </div>
+
+        <div class="question-container">
+          <p>6. How does robot-assisted training (RT) compare to conventional training in daily activity recovery?</p>
+          <label><input type="radio" name="question6" value="0"> RT significantly improved MBI scores</label>
+          <label><input type="radio" name="question6" value="1"> RT had no significant effect</label>
+          <label><input type="radio" name="question6" value="2"> RT was less effective</label>
+          <label><input type="radio" name="question6" value="3"> RT was effective only for specific age groups</label>
+        </div>
+
+        <div class="question-container">
+          <p>7. Which muscle tone measurement showed significant improvement with RT?</p>
+          <label><input type="radio" name="question7" value="0"> Modified Barthel Index (MBI)</label>
+          <label><input type="radio" name="question7" value="1"> Modified Ashworth Scale (MAS)</label>
+          <label><input type="radio" name="question7" value="2"> Berg Balance Scale</label>
+          <label><input type="radio" name="question7" value="3"> Functional Independence Measure (FIM)</label>
+        </div>
+
+        <div class="question-container">
+          <p>8. What major limitation restricts real-world application of ML for LVO detection?</p>
+          <label><input type="radio" name="question8" value="0"> Insufficient computational power in ambulances</label>
+          <label><input type="radio" name="question8" value="1"> Lack of prospective external validation</label>
+          <label><input type="radio" name="question8" value="2"> High computational costs</label>
+          <label><input type="radio" name="question8" value="3"> Low accuracy in controlled studies</label>
+        </div>
+
+        <div class="question-container">
+          <p>9. What was the pooled sensitivity and specificity for ML models in detecting LVO?</p>
+          <label><input type="radio" name="question9" value="0"> Sensitivity 0.73, Specificity 0.85</label>
+          <label><input type="radio" name="question9" value="1"> Sensitivity 0.85, Specificity 0.73</label>
+          <label><input type="radio" name="question9" value="2"> Sensitivity 0.80, Specificity 0.70</label>
+          <label><input type="radio" name="question9" value="3"> Sensitivity 0.77, Specificity 0.77</label>
+        </div>
+
+        <div class="question-container">
+          <p>10. What key factor did NOT significantly influence VR training outcomes?</p>
+          <label><input type="radio" name="question10" value="0"> Type of VR immersion used</label>
+          <label><input type="radio" name="question10" value="1"> Specific VR intervention content</label>
+          <label><input type="radio" name="question10" value="2"> Type of control groups</label>
+          <label><input type="radio" name="question10" value="3"> Patient's age group</label>
+        </div>
+
+        <div class="question-container">
+          <p>11. What was a key limitation of robot-assisted training noted in the study?</p>
+          <label><input type="radio" name="question11" value="0"> High cost of devices</label>
+          <label><input type="radio" name="question11" value="1"> Lack of generalizability to acute stroke patients</label>
+          <label><input type="radio" name="question11" value="2"> Inconsistent improvement across studies</label>
+          <label><input type="radio" name="question11" value="3"> Limited applicability for lower limb rehabilitation</label>
+        </div>
+
+        <div class="question-container">
+          <p>12. What tests were used to measure balance improvements in VR stroke rehabilitation?</p>
+          <label><input type="radio" name="question12" value="0"> Modified Barthel Index and Berg Balance Scale</label>
+          <label><input type="radio" name="question12" value="1"> Functional Reach Test and Balance Confidence Scale</label>
+          <label><input type="radio" name="question12" value="2"> 6-Minute Walk Test and 10-Meter Walk Test</label>
+          <label><input type="radio" name="question12" value="3"> Montreal Cognitive Assessment</label>
+        </div>
+
+        <div class="question-container">
+          <p>13. Which prehospital stroke scale had the highest pooled AUC?</p>
+          <label><input type="radio" name="question13" value="0"> Cincinnati Prehospital Stroke Scale</label>
+          <label><input type="radio" name="question13" value="1"> Rapid Arterial Occlusion Evaluation (RACE)</label>
+          <label><input type="radio" name="question13" value="2"> Los Angeles Motor Scale (LAMS)</label>
+          <label><input type="radio" name="question13" value="3"> NIH Stroke Scale</label>
+        </div>
+
+        <div class="question-container">
+          <p>14. What does the study conclude about the potential of ML models for LVO detection?</p>
+          <label><input type="radio" name="question14" value="0"> ML models demonstrated potential but need external validation</label>
+          <label><input type="radio" name="question14" value="1"> ML models are fully reliable</label>
+          <label><input type="radio" name="question14" value="2"> ML models underperform compared to prehospital stroke scales</label>
+          <label><input type="radio" name="question14" value="3"> ML models are only effective in post-hospital settings</label>
+        </div>
+
+        <div class="question-container">
+          <p>15. What key metric indicated ML models outperformed prehospital scales in specificity?</p>
+          <label><input type="radio" name="question15" value="0"> Specificity 0.77</label>
+          <label><input type="radio" name="question15" value="1"> Specificity 0.72</label>
+          <label><input type="radio" name="question15" value="2"> Specificity 0.85</label>
+          <label><input type="radio" name="question15" value="3"> Specificity 0.90</label>
+        </div>
+
+        <button type="button" id="submit-btn">Submit</button>
+      </form>
+      <div id="result-display">
+        <h2>Your Grade: <span id="grade"></span>%</h2>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const submitButton = document.getElementById("submit-btn");
+      const resultDisplay = document.getElementById("result-display");
+      const gradeSpan = document.getElementById("grade");
+
+      const correctAnswers = [
+        "0", // Question 1 correct answer index
+        "1", // Question 2 correct answer index
+        // Add the rest of the correct answers here...
+      ];
+
+      submitButton.addEventListener("click", () => {
+        const form = document.getElementById("quiz-form");
+        const formData = new FormData(form);
+        let score = 0;
+
+        correctAnswers.forEach((answer, index) => {
+          const questionName = `question${index + 1}`;
+          if (formData.get(questionName) === answer) {
+            score++;
+          }
+        });
+
+        const totalQuestions = correctAnswers.length;
+        const grade = ((score / totalQuestions) * 100).toFixed(2);
+        gradeSpan.textContent = grade;
+
+        resultDisplay.style.display = "block";
+      });
+    });
+  </script>
+</body>
+</html>

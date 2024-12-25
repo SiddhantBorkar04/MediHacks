@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module Page</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* New Styles */
+    .page-title {
+      font-size: 32px;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .resources-section {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .resource-card {
+      background-color: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .resource-card h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .resource-card p {
+      color: #7f8c8d;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    .practice-section {
+      text-align: center;
+    }
+
+    .btn-practice {
+      display: inline-block;
+      background-color: #2ecc71;
+      color: #fff;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    }
+
+    .btn-practice:hover {
+      background-color: #27ae60;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Navigation Bar -->
+    <div class="navbar" id="navbar">
+      <button class="toggle-btn" id="toggle-btn">▶</button>
+      <ul class="menu">
+        <li><a href="index.html">Profile</a></li>
+        <li><a href="graph.html">Progress Graph</a></li>
+        <li><a href="courses.html">My Courses</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Dynamic Title for Focus Area -->
+      <h1 id="focus-area-title" class="page-title">Loading...</h1>
+
+      <!-- Resource Section -->
+      <section class="resources-section">
+        <p class="section-description">
+          Below are resources for this focus area. Click on any card to learn more:
+        </p>
+
+        <!-- Dynamic Resource Cards for "Tech" -->
+        <div class="resource-card" id="resource-1">
+          <h3>The Effectiveness of Therapeutic Exercise Interventions With Virtual Reality on Balance and Walking Among Persons With Chronic Stroke</h3>
+          <p>Systematic Review, Meta-Analysis, and Meta-Regression of Randomized Controlled Trials</p>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/39621381/" class="btn" target="_blank">Learn More</a>
+        </div>
+        <div class="resource-card" id="resource-2">
+          <h3>Effect of Upper Robot-Assisted Training on Upper Limb Motor, Daily Life Activities, and Muscular Tone</h3>
+          <p>A Systematic Review and Meta-Analysis for Patients With Stroke</p>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/39482838/" class="btn" target="_blank">Learn More</a>
+        </div>
+        <div class="resource-card" id="resource-3">
+          <h3>Systematic Review and Meta-Analysis of Prehospital Machine Learning Scores</h3>
+          <p>Screening Tools for Early Detection of Large Vessel Occlusion in Patients With Suspected Stroke</p>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/38874054/" class="btn" target="_blank">Learn More</a>
+        </div>
+      </section>
+
+      <!-- Practice Section -->
+      <section class="practice-section">
+        <a id="practice-link" class="btn-practice">
+          Go to Practice
+        </a>
+      </section>
+    </div>
+  </div>
+
+  <script>
+        // Toggle navbar
+    document.getElementById("toggle-btn").addEventListener("click", () => {
+      document.getElementById("navbar").classList.toggle("collapsed");
+    });
+    
+
+      // Toggle navbar
+      document.getElementById("toggle-btn").addEventListener("click", () => {
+        document.getElementById("navbar").classList.toggle("collapsed");
+      });
+
+    // Grab the 'focusArea' from the URL query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const focusArea = urlParams.get('focusArea') || 'No Focus Area Provided';
+
+    // Insert the focus area text into the H1
+    document.getElementById('focus-area-title').textContent = focusArea;
+
+    // Fix the Practice link to include the focusArea in the query string dynamically
+    const practiceLink = document.getElementById('practice-link');
+    practiceLink.href = `practice.html?focusArea=${encodeURIComponent(focusArea)}`;
+
+    // Only display resource cards if the focus area is "Tech"
+    const resourceCards = document.querySelectorAll('.resource-card');
+    if (focusArea !== 'Tech') {
+      resourceCards.forEach((card) => {
+        card.style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>

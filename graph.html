@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Progress Graph</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            height: 100vh;
+            position: fixed;
+            overflow: hidden;
+            transition: width 0.3s ease;
+        }
+
+        .navbar.collapsed {
+            width: 50px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            margin: 10px 0;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #ecf0f1;
+            display: block;
+            padding: 10px 20px;
+        }
+
+        .menu li a:hover {
+            background-color: #34495e;
+        }
+
+        .toggle-btn {
+            background-color: #34495e;
+            color: #ecf0f1;
+            font-size: 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        .toggle-btn.collapsed {
+            transform: rotate(180deg);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .navbar.collapsed ~ .main-content {
+            margin-left: 50px;
+        }
+
+        .graph-wrapper {
+            width: 90%;
+            max-width: 1200px;
+            background-color: #f7f9fc;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .graph-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            aspect-ratio: 2;
+        }
+
+        .node {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .node svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .node circle {
+            fill: none;
+            stroke-width: 6;
+        }
+
+        .node .background-circle {
+            stroke: #e0e0e0;
+        }
+
+        .node .progress-circle {
+            stroke-dasharray: 315;
+            stroke-dashoffset: 315;
+            transition: stroke-dashoffset 0.6s ease;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        path {
+            stroke: #888;
+            stroke-width: 4;
+            fill: none;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" id="navbar">
+        <button class="toggle-btn" id="toggle-btn">▶</button>
+        <ul class="menu">
+            <li><a href="index.html">Profile</a></li>
+            <li><a href="graph.html">Progress Graph</a></li>
+            <li><a href="courses.html">My Courses</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Cardiology Progress Graph</h1>
+        <div class="graph-wrapper">
+            <div class="graph-container">
+                <svg id="svg-lines"></svg>
+
+                <!-- Circular Nodes with Dynamic Progress -->
+                <div class="node" id="node1" data-progress="80" style="top: 5%; left: 40%;">
+                    Accidents
+                </div>
+                <div class="node" id="node2" data-progress="60" style="top: 20%; left: 25%;">
+                    At Birth
+                </div>
+                <div class="node" id="node3" data-progress="30" style="top: 20%; left: 55%;">
+                    Cardiac Arrest
+                </div>
+                <div class="node" id="node4" data-progress="50" style="top: 35%; left: 15%;">
+                    Sepsis
+                </div>
+                <div class="node" id="node5" data-progress="20" style="top: 35%; left: 65%;">
+                    Stroke
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function adjustNodeTextSize() {
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => {
+                const textLength = node.textContent.length;
+                if (textLength > 10) {
+                    node.style.fontSize = '0.7em';
+                }
+            });
+        }
+        document.addEventListener('DOMContentLoaded', adjustNodeTextSize);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById("toggle-btn");
+            const navbar = document.getElementById("navbar");
+
+            toggleBtn.addEventListener("click", () => {
+                navbar.classList.toggle("collapsed");
+                toggleBtn.classList.toggle("collapsed");
+            });
+
+            setupNodes();
+            connectNodes('node1', 'node2');
+            connectNodes('node1', 'node3');
+            connectNodes('node3', 'node5');
+            connectNodes('node4', 'node2');
+        });
+
+        function setupNodes() {
+            const nodes = document.querySelectorAll('.node');
+            const svgNS = "http://www.w3.org/2000/svg";
+
+            nodes.forEach((node) => {
+                const progress = parseInt(node.dataset.progress, 10);
+
+                // Create SVG elements for the progress circle
+                const svg = document.createElementNS(svgNS, "svg");
+                const backgroundCircle = document.createElementNS(svgNS, "circle");
+                const progressCircle = document.createElementNS(svgNS, "circle");
+
+                // Set up the background circle
+                backgroundCircle.setAttribute("class", "background-circle");
+                backgroundCircle.setAttribute("cx", "50");
+                backgroundCircle.setAttribute("cy", "50");
+                backgroundCircle.setAttribute("r", "45");
+
+                // Set up the progress circle
+                progressCircle.setAttribute("class", "progress-circle");
+                progressCircle.setAttribute("cx", "50");
+                progressCircle.setAttribute("cy", "50");
+                progressCircle.setAttribute("r", "45");
+                progressCircle.style.strokeDashoffset = `${315 - (315 * progress) / 100}`;
+
+                // Determine color based on progress
+                if (progress >= 70) {
+                    progressCircle.style.stroke = "#10b981";
+                } else if (progress >= 40) {
+                    progressCircle.style.stroke = "#fbbf24";
+                } else {
+                    progressCircle.style.stroke = "#ef4444";
+                }
+
+                // Append SVG elements to the node
+                svg.appendChild(backgroundCircle);
+                svg.appendChild(progressCircle);
+                node.appendChild(svg);
+            });
+        }
+
+        function connectNodes(parentId, childId) {
+            const parent = document.getElementById(parentId);
+            const child = document.getElementById(childId);
+            const svg = document.getElementById('svg-lines');
+
+            const parentRect = parent.getBoundingClientRect();
+            const childRect = child.getBoundingClientRect();
+            const containerRect = svg.parentElement.getBoundingClientRect();
+
+            const x1 = parentRect.left + parentRect.width / 2 - containerRect.left;
+            const y1 = parentRect.top + parentRect.height / 2 - containerRect.top;
+            const x2 = childRect.left + childRect.width / 2 - containerRect.left;
+            const y2 = childRect.top + childRect.height / 2 - containerRect.top;
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", `M${x1},${y1} L${x2},${y2}`);
+            svg.appendChild(path);
+        }
+
+    </script>
+</body>
+</html>
